@@ -1,0 +1,20 @@
+# --- Reguli specifice Java/Maven ---
+target/
+*.class
+*.log
+
+# --- Reguli specifice Vaadin (Foarte importante pentru dimensiune) ---
+node_modules/
+package.json
+package-lock.json
+vite.config.ts
+vite.generated.ts
+types.d.ts
+tsconfig.json
+sw.ts
+sw-utils.ts
+
+# --- Backup-uri și fișiere temporare ---
+.DS_Store
+.idea/
+*.iml
