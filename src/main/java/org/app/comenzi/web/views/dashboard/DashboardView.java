@@ -25,7 +25,7 @@ import com.vaadin.flow.component.html.Div;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.example.Trotineta;
+import model.Trotineta;
 
 @PageTitle("Dashboard | Ride4Fun")
 @Route(value = "panou-control", layout = MainView.class)
@@ -38,7 +38,7 @@ public class DashboardView extends VerticalLayout {
         setPadding(true);
         setWidthFull();
 
-        H2 titlu = new H2("Panou de Control (Dashboard)");
+        H2 titlu = new H2("Dashboard");
 
         // Integrarea elementelor vizuale în pagină
         add(titlu, createKPISection(), createChartSection(), createMapSection());

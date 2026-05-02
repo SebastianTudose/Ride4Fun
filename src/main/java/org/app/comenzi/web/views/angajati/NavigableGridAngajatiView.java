@@ -12,7 +12,7 @@ import com.vaadin.flow.router.Route;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.example.Angajat;
+import model.Angajat;
 import org.layout.MainView;
 
 import java.util.ArrayList;

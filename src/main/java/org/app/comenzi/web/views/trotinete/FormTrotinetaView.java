@@ -16,7 +16,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.layout.MainView;
-import org.example.Trotineta;
+import model.Trotineta;
 
 import java.util.List;
 

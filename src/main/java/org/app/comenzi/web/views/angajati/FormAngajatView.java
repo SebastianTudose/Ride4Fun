@@ -15,7 +15,7 @@ import com.vaadin.flow.router.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.example.Angajat;
+import model.Angajat;
 import org.layout.MainView;
 
 @PageTitle("Formular Angajat")
