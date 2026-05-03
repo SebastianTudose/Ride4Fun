@@ -23,4 +23,4 @@ COPY --from=build /app/frontend/target/*.war /var/lib/jetty/webapps/ROOT.war
 EXPOSE 8080
 
 # Comanda de pornire a serverului Jetty, injectând variabila bazei de date din Render
-CMD ["sh", "-c", "java -Djakarta.persistence.jdbc.url=${JDBC_DATABASE_URL} -jar /usr/local/jetty/start.jar"]
+CMD ["sh", "-c", "java -Djakarta.persistence.jdbc.url=${JDBC_DATABASE_URL} -Declipselink.ddl-generation=create-or-extend-tables -Declipselink.ddl-generation.output-mode=database -jar /usr/local/jetty/start.jar"]
