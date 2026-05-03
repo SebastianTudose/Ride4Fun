@@ -8,4 +8,4 @@ RUN mvn clean package -pl frontend -am -Pproduction -DskipTests
 FROM eclipse-temurin:21-jre
 COPY --from=build /frontend/target/*.war /app.war
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.war"]
+ENTRYPOINT ["java", "-Djakarta.persistence.jdbc.url=${JDBC_DATABASE_URL}", "-jar", "app.war"]
