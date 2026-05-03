@@ -1,4 +1,4 @@
-# Etapa 1: Compilare (Build)
+# Compilare
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
@@ -13,15 +13,14 @@ RUN mvn clean install -DskipTests
 WORKDIR /app/frontend
 RUN mvn clean package -Pproduction -DskipTests
 
-# Etapa 2: Rulare (Run)
-FROM eclipse-temurin:21-jre
-WORKDIR /app
+# Rulare (Run) pe un server Jetty
+FROM jetty:11.0.21-jdk21
 
-# Copiem doar fișierul .war rezultat din etapa de build
-COPY --from=build /app/frontend/target/*.war app.war
+# Copiem arhiva compilată și o redenumim ROOT.war pentru a rula direct pe adresa principală
+COPY --from=build /app/frontend/target/*.war /var/lib/jetty/webapps/ROOT.war
 
-# Portul pentru Render
+# Portul standard
 EXPOSE 8080
 
-# Comanda de pornire (folosește variabila pentru baza de date din Render)
-ENTRYPOINT ["sh", "-c", "java -Djakarta.persistence.jdbc.url=${JDBC_DATABASE_URL} -jar app.war"]
+# Comanda de pornire a serverului Jetty, injectând variabila bazei de date din Render
+CMD ["sh", "-c", "java -Djakarta.persistence.jdbc.url=${JDBC_DATABASE_URL} -jar /usr/local/jetty/start.jar"]
