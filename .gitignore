@@ -4,6 +4,7 @@ target/
 *.log
 
 # --- Reguli specifice Vaadin (Foarte importante pentru dimensiune) ---
+frontend/generated/
 node_modules/
 package.json
 package-lock.json

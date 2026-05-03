@@ -97,39 +97,32 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     }
 
     private void doLogin() {
-        String user = username.getValue().trim();
-        String pwd = password.getValue();
+        String user = username.getValue();
+        String pass = password.getValue();
 
-        // Resetăm starea vizuală la fiecare încercare
-        username.setInvalid(false);
-        password.setInvalid(false);
-        mesajEroareGeneral.setVisible(false);
-
-        // Validare simplă înainte de DB
-        if (user.isEmpty() || pwd.isEmpty()) {
-            if (user.isEmpty()) username.setInvalid(true);
-            if (pwd.isEmpty()) password.setInvalid(true);
+        // 1. Validare pentru căsuțe necompletate (Client-side check)
+        if (user.isEmpty() || pass.isEmpty() || user.isEmpty() && pass.isEmpty()) {
+            Notification.show("Vă rugăm să completați toate câmpurile!", 3000, Notification.Position.MIDDLE)
+                    .addThemeVariants(NotificationVariant.LUMO_WARNING);
             return;
         }
 
         try {
-            // Interogăm baza de date
-            if (AdminService.authenticate(user, pwd)) {
+            // 2. Verificare credențiale în Backend
+            if (AdminService.authenticate(user, pass)) {
                 VaadinSession.getCurrent().setAttribute("admin_logged_in", true);
                 VaadinSession.getCurrent().setAttribute("admin_username", user);
                 UI.getCurrent().navigate(DashboardView.class);
             } else {
-                // DATE GREȘITE
-                username.setInvalid(true);
-                password.setInvalid(true);
-                password.clear();
-                mesajEroareGeneral.setVisible(true);
+                // 3. Eroare pentru date greșite
+                Notification.show("Nume de utilizator sau parolă incorectă!", 3000, Notification.Position.MIDDLE)
+                        .addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
-        } catch (Exception ex) {
-            // Dacă ajungem aici, înseamnă că Baza de Date a dat eroare!
-            Notification.show("Eroare de conexiune la baza de date: " + ex.getMessage(),
-                    5000, Notification.Position.MIDDLE);
-            ex.printStackTrace();
+        } catch (Exception e) {
+            // 4. Eroare tehnică (bază de date picată, eroare JPA etc.)
+            e.printStackTrace();
+            Notification.show("Eroare de conexiune la baza de date!", 5000, Notification.Position.BOTTOM_STRETCH)
+                    .addThemeVariants(NotificationVariant.LUMO_ERROR);
         }
     }
 
