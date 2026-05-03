@@ -35,8 +35,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         /*
         // Cont de administrator creat
         try {
-            if (!AdminService.authenticate("SebastianTudose", "@dministrator20Seby")) {
-                AdminService.register("SebastianTudose", "@dministrator20Seby");
+            if (!AdminService.authenticate("SebastianTudose", "admin123")) {
+                AdminService.register("SebastianTudose", "admin123");
             }
         } catch (Exception e) {}
         */
