@@ -58,6 +58,8 @@ Folosim o structură simplă și eficientă pentru organizarea codului:
 * `main` primește doar cod funcțional pentru a nu întrerupe serviciul live.
 
 ---
+## Acesare platforma lansată prin Render
+https://ride4fun-vflg.onrender.com
 
 ## ⚙️ Cum Rulezi Aplicația Local
 
