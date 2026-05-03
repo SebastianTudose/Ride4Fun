@@ -8,13 +8,13 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <!-- Data Source Connection -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
-            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
-            <property name="jakarta.persistence.jdbc.password" value="postgres"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
-            <property name="jakarta.persistence.validation.mode" value="none" />
-            <property name="eclipselink.logging.level" value="FINEST"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://inchiriere_trotinete_user:xa7iXWCNFMnhezstKeCdArzuswU5FvIM@dpg-d7ra4d28qa3s73ddlib0-a.frankfurt-postgres.render.com/inchiriere_trotinete"/>
+
+            <property name="jakarta.persistence.jdbc.user" value="inchiriere_trotinete_user"/>
+            <property name="jakarta.persistence.jdbc.password" value="xa7iXWCNFMnhezstKeCdArzuswU5FvIM"/>
+
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
         </properties>
     </persistence-unit>
 </persistence>
