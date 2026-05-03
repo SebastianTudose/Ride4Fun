@@ -8,7 +8,7 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://inchiriere_trotinete_user:xa7iXWCNFMnhezstKeCdArzuswU5FvIM@dpg-d7ra4d28qa3s73ddlib0-a/inchiriere_trotinete"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://dpg-d7ra4d28qa3s73ddlib0-a:5432/inchiriere_trotinete"/>
 
             <property name="jakarta.persistence.jdbc.user" value="inchiriere_trotinete_user"/>
             <property name="jakarta.persistence.jdbc.password" value="xa7iXWCNFMnhezstKeCdArzuswU5FvIM"/>
