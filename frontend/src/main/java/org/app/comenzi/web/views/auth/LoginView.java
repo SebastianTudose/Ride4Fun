@@ -32,6 +32,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final Span mesajEroareGeneral = new Span("Nume de utilizator sau parolă incorectă!");
 
     public LoginView() {
+
+        Button btnCreareAdmin = new Button("🆕 CREEAZĂ ADMIN SEBASTIAN", e -> {
+            boolean success = AdminService.register("SebastianTudose", "admin123");
+            if (success) {
+                Notification.show("✅ Cont creat cu succes! Acum te poți loga.", 5000, Notification.Position.MIDDLE);
+            } else {
+                Notification.show("❌ Eroare la creare sau utilizatorul există deja.", 5000, Notification.Position.MIDDLE);
+            }
+        });
+        add(btnCreareAdmin);
+
         /*
         // Cont de administrator creat
         try {
