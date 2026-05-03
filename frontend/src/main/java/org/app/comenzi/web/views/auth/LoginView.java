@@ -20,8 +20,8 @@ import com.vaadin.flow.server.VaadinSession;
 import org.app.comenzi.web.views.service.AdminService;
 import org.app.comenzi.web.views.dashboard.DashboardView;
 
-@PageTitle("Login - Ride4Fun Admin")
-@Route("login")
+@PageTitle("Welcome | Ride4Fun Admin")
+@Route("")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private final TextField username = new TextField("Nume Utilizator");
@@ -32,13 +32,14 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final Span mesajEroareGeneral = new Span("Nume de utilizator sau parolă incorectă!");
 
     public LoginView() {
-        /* // Cont de administrator creat
+        /*
+        // Cont de administrator creat
         try {
             if (!AdminService.authenticate("SebastianTudose", "@dministrator20Seby")) {
                 AdminService.register("SebastianTudose", "@dministrator20Seby");
             }
         } catch (Exception e) {}
-         */
+        */
 
         // 1. Setăm pagina să ocupe tot ecranul și centrăm absolut totul
         setSizeFull();
