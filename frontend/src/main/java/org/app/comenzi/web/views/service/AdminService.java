@@ -20,18 +20,18 @@ public class AdminService {
         } finally { em.close(); }
     }
 
-    // Metoda pentru ÎNREGISTRARE (Creează contul și criptează parola)
+    // Metoda pentru ÎNREGISTRARE
     public static boolean register(String username, String password) {
         EntityManager em = emf.createEntityManager();
         try {
-            // Verificăm dacă utilizatorul există deja
+            // Aici am verificat dacă există deja utilizatorul pe care dorim să îl creăm
             long count = em.createQuery(
                             "SELECT COUNT(a) FROM Administrator a WHERE a.username = :username",
                             Long.class)
                     .setParameter("username", username)
                     .getSingleResult();
 
-            if (count > 0) return false; // Utilizatorul există deja
+            if (count > 0) return false;
 
             // Creăm noul administrator
             Administrator admin = new Administrator();
