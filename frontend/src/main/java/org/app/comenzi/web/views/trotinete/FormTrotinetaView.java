@@ -139,7 +139,9 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
                 // Dacă id-ul trotinetei din bază diferă de id-ul trotinetei curente (sau curenta e nouă și id e null)
                 // înseamnă că e un duplicat.
                 if (this.trotineta.getId() == null || !existenta.getId().equals(this.trotineta.getId())) {
-                    System.out.println("EROARE: Codul " + codIntrodus + " există deja!");
+                    Notification notification = Notification.show("EROARE: Codul " + codIntrodus + " există deja!", 3000, Notification.Position.TOP_CENTER);
+                    notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                    //System.out.println("EROARE: Codul " + codIntrodus + " există deja!");
 
                     // Afișăm eroare pe câmpul text (Vaadin face asta roșu)
                     codIdentificare.setErrorMessage("Acest cod există deja!");
