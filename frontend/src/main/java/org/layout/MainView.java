@@ -124,6 +124,7 @@ public class MainView extends VerticalLayout implements RouterLayout, BeforeEnte
         header.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
         header.getStyle().set("border-bottom", "1px solid #e0e0e0"); // O linie subtilă jos
         header.setPadding(true);
+        header.getStyle().set("flex-wrap", "wrap");
 
         add(header);
     }

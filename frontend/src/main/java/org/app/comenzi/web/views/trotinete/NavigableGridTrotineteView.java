@@ -83,6 +83,10 @@ public class NavigableGridTrotineteView extends VerticalLayout {
                 cmdStergeTrotineta
         );
 
+        //Pentru mobil (responsive)
+        toolbar.getStyle().set("flex-wrap", "wrap");
+        toolbar.setWidthFull();
+
         //Aici am folosit numele variabilelor din clasa trotineta si vehicul electric pentru grid
         grid.setColumns("codIdentificare","baterie","kilometraj","locatie","status","model","stareTehnica");
 
