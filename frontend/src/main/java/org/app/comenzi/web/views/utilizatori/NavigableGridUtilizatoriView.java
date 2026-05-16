@@ -5,6 +5,8 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -96,7 +98,8 @@ public class NavigableGridUtilizatoriView extends VerticalLayout {
             if (this.utilizatorSelectat != null) {
                 stergeUtilizator();
             } else {
-                System.out.println("Selectează un utilizator pentru a-l șterge!");
+                Notification notification = Notification.show("Selectează un utilizator!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
         });
     }
@@ -139,7 +142,8 @@ public class NavigableGridUtilizatoriView extends VerticalLayout {
             grid.setItems(this.utilizatori);
             this.utilizatorSelectat = null;
 
-            System.out.println("Utilizator șters cu succes.");
+            Notification notification = Notification.show("Utilizator șters cu succes!", 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception ex) {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
             ex.printStackTrace(); // Aici stergerea poate esua daca are inchirieri active

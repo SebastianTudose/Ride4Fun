@@ -1,5 +1,7 @@
 package org.app.comenzi.web.views.dashboard;
 
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import org.layout.MainView; // Importul vital pentru meniul tău
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Span;
@@ -76,7 +78,8 @@ public class DashboardView extends VerticalLayout {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProduseJPA");
             this.em = emf.createEntityManager();
         } catch (Exception e) {
-            System.err.println("Eroare la conectarea cu baza de date în Dashboard: " + e.getMessage());
+            Notification notification = Notification.show("Eroare la conectarea cu baza de date în Dashboard: "+e.getMessage(), 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         }
     }
 

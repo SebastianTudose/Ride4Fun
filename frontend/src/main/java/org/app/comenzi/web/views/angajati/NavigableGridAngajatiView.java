@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -77,7 +79,8 @@ public class NavigableGridAngajatiView extends VerticalLayout {
             if (this.angajatSelectat != null) {
                 this.getUI().ifPresent(ui -> ui.navigate(FormAngajatView.class, this.angajatSelectat.getId()));
             } else {
-                System.out.println("Selectează un angajat!");
+                Notification notification = Notification.show("Selectează un angajat", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
             }
         });
 
@@ -120,7 +123,8 @@ public class NavigableGridAngajatiView extends VerticalLayout {
             this.angajati.remove(angajatSelectat);
             grid.setItems(this.angajati);
             this.angajatSelectat = null;
-            System.out.println("Angajat șters!");
+            Notification notification = Notification.show("Angajat șters!", 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception ex) {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
             ex.printStackTrace();

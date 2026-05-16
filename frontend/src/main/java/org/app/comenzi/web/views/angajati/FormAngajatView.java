@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -109,7 +111,9 @@ public class FormAngajatView extends VerticalLayout implements HasUrlParameter<I
             // dacă ID e null (angajat nou), folosește ID-ul generat de DB
             this.angajat = em.merge(this.angajat);
             em.getTransaction().commit();
-            System.out.println("Angajat salvat!");
+            //System.out.println("Angajat salvat!");
+            Notification notification = Notification.show("Datele angajatului au fost salvate!", 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception ex) {
             if (em.getTransaction().isActive()) em.getTransaction().rollback();
             ex.printStackTrace();

@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -108,27 +110,32 @@ public class NavigableGridTrotineteView extends VerticalLayout {
         fillerText.addValueChangeListener(e->updateList());
 
         cmdAdaugaTrotineta.addClickListener(e->{
-            System.out.println("Click pe Adaugă");
+            Notification notification = Notification.show("Click pe adaugă!", 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
             this.getUI().ifPresent(ui -> ui.navigate(FormTrotinetaView.class));
         });
 
         cmdEditeazaDetaliiTrotineta.addClickListener(e->{
             if(this.trotineta!=null){
-                System.out.println("Click pe Editare pentru: "+this.trotineta.getCodIdentificare());
+                Notification notification = Notification.show("Click pe Editare pentru: "+this.trotineta.getCodIdentificare(), 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
                 this.getUI().ifPresent(ui -> ui.navigate(FormTrotinetaView.class, this.trotineta.getId()));
             }else{
-                System.out.println("Selectează o trotinetă mai întâi!");
+                Notification notification = Notification.show("Selectează o trotinetă!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
         });
 
         cmdStergeTrotineta.addClickListener(e -> {
             if (this.trotineta != null) {
-                System.out.println("Click pe Ștergere pentru: " + this.trotineta.getCodIdentificare());
+                Notification notification = Notification.show("Click pe Ștergere pentru: "+this.trotineta.getCodIdentificare(), 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
                 // 1. Executăm ștergerea
                 stergeTrotinetaLocala();
                 // Notification.show("Trotineta a fost ștearsă!");
             } else {
-                System.out.println("Selectează o trotinetă pentru ștergere!");
+                Notification notification = Notification.show("Selectează o trotinetă pentru ștergere!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
         });
     }
@@ -148,7 +155,7 @@ public class NavigableGridTrotineteView extends VerticalLayout {
         }
     }
 
-    //Metoda de stergere locala, conform cursului
+    //Metoda de stergere locala
     private void stergeTrotinetaLocala() {
         try {
             if (this.em.contains(this.trotineta)) {
@@ -161,9 +168,10 @@ public class NavigableGridTrotineteView extends VerticalLayout {
                 updateList();
                 this.trotineta = null; // Resetăm selecția
 
-                System.out.println("Trotineta ștearsă cu succes.");
+                Notification notification = Notification.show("Trotinetă ștearsă cu SUCCES!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
             } else {
-                // Caz rar: obiectul nu e atașat contextului JPA, trebuie re-găsit
+                // obiectul nu e atașat contextului JPA, trebuie re-găsit
                 Trotineta t = em.find(Trotineta.class, this.trotineta.getId());
                 if (t != null) {
                     this.em.getTransaction().begin();

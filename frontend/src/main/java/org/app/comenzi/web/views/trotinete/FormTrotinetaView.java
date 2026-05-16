@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -151,7 +153,9 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
                 this.em.getTransaction().begin();
                 this.trotineta = this.em.merge(this.trotineta);
                 this.em.getTransaction().commit();
-                System.out.println("Trotinetă Salvată cu SUCCES!");
+                //System.out.println("Trotinetă Salvată cu SUCCES!");
+                Notification notification = Notification.show("Trotinetă Salvată cu SUCCES!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
             } catch (Exception ex) {
                 if (this.em.getTransaction().isActive()) {
                     this.em.getTransaction().rollback();
@@ -159,7 +163,8 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
                 ex.printStackTrace();
             }
         } else {
-            System.out.println("Formular invalid");
+            Notification notification = Notification.show("Formular invalid!", 3000, Notification.Position.MIDDLE);
+            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         }
     }
 
@@ -169,7 +174,8 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
                 this.em.getTransaction().begin();
                 this.em.remove(this.trotineta);
                 this.em.getTransaction().commit();
-                System.out.println("Trotineta ștearsă!");
+                Notification notification = Notification.show("Trotinetă ștearsă!", 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
             }
         } catch (Exception ex) {
             if (this.em.getTransaction().isActive())
