@@ -172,11 +172,16 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
 
     private void stergeTrotineta() {
         try {
-            if (this.trotineta != null && this.em.contains(this.trotineta)) {
+            if (this.trotineta != null && this.trotineta.getId() != null) {
                 this.em.getTransaction().begin();
+                // Dacă trotineta e "detached", o reatașăm
+                if (!this.em.contains(this.trotineta)) {
+                    this.trotineta = this.em.find(Trotineta.class, this.trotineta.getId());
+                }
                 this.em.remove(this.trotineta);
                 this.em.getTransaction().commit();
-                Notification notification = Notification.show("Trotinetă ștearsă!", 3000, Notification.Position.TOP_CENTER);
+
+                Notification notification = Notification.show("Trotinetă ștearsă cu succes!", 3000, Notification.Position.TOP_CENTER);
                 notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
             }
         } catch (Exception ex) {

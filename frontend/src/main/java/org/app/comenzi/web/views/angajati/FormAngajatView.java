@@ -80,8 +80,10 @@ public class FormAngajatView extends VerticalLayout implements HasUrlParameter<I
         FormLayout form = new FormLayout();
         form.add(nume, prenume, telefon, salariu, rol, tura);
 
-        form.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
-        form.setMaxWidth("500px");
+        form.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),   // 1 coloana pentru mobil
+                new FormLayout.ResponsiveStep("500px", 2) // 2 coloane pentru desktop
+        );
 
         HorizontalLayout buttons = new HorizontalLayout(btnSalveaza, btnSterge, btnAnuleaza);
         add(titlu, form, buttons);

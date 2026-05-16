@@ -80,7 +80,7 @@ public class NavigableGridAngajatiView extends VerticalLayout {
                 this.getUI().ifPresent(ui -> ui.navigate(FormAngajatView.class, this.angajatSelectat.getId()));
             } else {
                 Notification notification = Notification.show("Selectează un angajat pentru a edita informații!", 3000, Notification.Position.TOP_CENTER);
-                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
         });
 
@@ -89,7 +89,7 @@ public class NavigableGridAngajatiView extends VerticalLayout {
                 stergeAngajatLocal();
             } else {
                 Notification notification = Notification.show("Selectează un angajat pentru a-l șterge!", 3000, Notification.Position.TOP_CENTER);
-                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
             }
         });
     }
