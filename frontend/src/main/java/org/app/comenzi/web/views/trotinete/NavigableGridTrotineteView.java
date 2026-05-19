@@ -114,15 +114,15 @@ public class NavigableGridTrotineteView extends VerticalLayout {
         fillerText.addValueChangeListener(e->updateList());
 
         cmdAdaugaTrotineta.addClickListener(e->{
-            Notification notification = Notification.show("Click pe adaugă!", 3000, Notification.Position.TOP_CENTER);
-            notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
+            /*Notification notification = Notification.show("Click pe adaugă!", 3000, Notification.Position.TOP_CENTER);
+            notification.addThemeVariants(NotificationVariant.LUMO_WARNING);*/
             this.getUI().ifPresent(ui -> ui.navigate(FormTrotinetaView.class));
         });
 
         cmdEditeazaDetaliiTrotineta.addClickListener(e->{
             if(this.trotineta!=null){
-                Notification notification = Notification.show("Click pe Editare pentru: "+this.trotineta.getCodIdentificare(), 3000, Notification.Position.TOP_CENTER);
-                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
+                /*Notification notification = Notification.show("Click pe Editare pentru: "+this.trotineta.getCodIdentificare(), 3000, Notification.Position.TOP_CENTER);
+                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);*/
                 this.getUI().ifPresent(ui -> ui.navigate(FormTrotinetaView.class, this.trotineta.getId()));
             }else{
                 Notification notification = Notification.show("Selectează o trotinetă!", 3000, Notification.Position.TOP_CENTER);

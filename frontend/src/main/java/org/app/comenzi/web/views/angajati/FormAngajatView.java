@@ -64,6 +64,15 @@ public class FormAngajatView extends VerticalLayout implements HasUrlParameter<I
     private void initDataModel() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProduseJPA");
         this.em = emf.createEntityManager();
+
+        //Campurile au fost restrictionate pentru a nu accepta valori nule
+        binder.forField(nume).asRequired("Numele este obligatoriu!").bind("nume");
+        binder.forField(prenume).asRequired("Prenumele este obligatoriu!").bind("prenume");
+        binder.forField(telefon).asRequired("Telefonul este obligatoriu!").bind("telefon");
+        binder.forField(salariu).asRequired("Salariul este obligatoriu!").bind("salariu");
+        binder.forField(rol).asRequired("Selectați funcția!").bind("rol");
+        binder.forField(tura).asRequired("Selectați tura!").bind("tura");
+
         binder.bindInstanceFields(this);
     }
 

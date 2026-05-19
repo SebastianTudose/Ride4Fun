@@ -73,6 +73,15 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("ProduseJPA");
         this.em= emf.createEntityManager();
 
+        //Campurile sunt setate pentru a nu accepta valori nule la salvare
+        binder.forField(codIdentificare).asRequired("Codul de identificare este obligatoriu!").bind("codIdentificare");
+        binder.forField(baterie).asRequired("Procentajul bateriei trebuie precizat!").bind("baterie");
+        binder.forField(kilometraj).asRequired("Kilometrajul este obligatoriu!").bind("kilometraj");
+        binder.forField(locatie).asRequired("Locația este obligatorie!").bind("locatie");
+        binder.forField(status).asRequired("Selectați statusul!").bind("status");
+        binder.forField(model).asRequired("Modelul este obligatoriu!").bind("model");
+        binder.forField(stareTehnica).asRequired("Selectați starea tehnică!").bind("stareTehnica");
+
         //Aici legam automat campurile din UI cu variabilele din clasa
         binder.bindInstanceFields(this);
     }
@@ -88,10 +97,14 @@ public class FormTrotinetaView extends VerticalLayout implements HasUrlParameter
         stareTehnica.setLabel("Stare");
         stareTehnica.setItems("functional","service","defect");
         stareTehnica.setPlaceholder("Alege...");
+
         FormLayout formLayout=new FormLayout();
         formLayout.add(codIdentificare, baterie,kilometraj, locatie, status, model, stareTehnica);
-        formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0",1));
-        formLayout.setMaxWidth("500px");
+
+        formLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),   // 1 coloana pentru mobil
+                new FormLayout.ResponsiveStep("500px", 2) // 2 coloane pentru desktop
+        );
 
         //Bara de butoane aici
         HorizontalLayout actions=new HorizontalLayout(cmdSalveaza, cmdSterge, cmdAbandon);
