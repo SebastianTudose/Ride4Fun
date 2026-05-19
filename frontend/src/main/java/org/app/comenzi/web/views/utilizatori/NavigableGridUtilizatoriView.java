@@ -58,6 +58,8 @@ public class NavigableGridUtilizatoriView extends VerticalLayout {
         btnSterge.addThemeVariants(ButtonVariant.LUMO_ERROR);
 
         HorizontalLayout toolbar = new HorizontalLayout(textCautare, btnSterge);
+
+        //Pentru mobil (responsive)
         toolbar.getStyle().set("flex-wrap", "wrap");
         toolbar.setWidthFull();
 
