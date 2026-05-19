@@ -55,6 +55,10 @@ public class NavigableGridAngajatiView extends VerticalLayout {
         cmdEditeaza.addThemeVariants(ButtonVariant.LUMO_WARNING);
         HorizontalLayout toolbar = new HorizontalLayout(fillerText, cmdAdauga, cmdEditeaza, cmdSterge);
 
+        //Pentru mobil (responsive)
+        toolbar.getStyle().set("flex-wrap", "wrap");
+        toolbar.setWidthFull();
+
         grid.setColumns("nume", "prenume", "telefon", "salariu", "rol", "tura");
 
         grid.getColumnByKey("nume").setHeader("Nume");
